@@ -2,6 +2,28 @@
 //!
 //! This is a very basic library for creating and using PID files
 //! to coordinate among processes.
+//!
+//! A PID file is a file that contains the PID of a process. It can be used
+//! as a crude form of locking to prevent multiple instances of a process
+//! from running at the same time, or to provide a lock for a resource which
+//! should only be accessed by one process at a time.
+//!
+//! This library provides a simple API for creating and using PID files. PID
+//! files are created at a given path, and are automatically removed when the
+//! PID file object is dropped.
+//!
+//! # Example
+//!
+//! ```rust
+//! use pidfile::PidFile;
+//!
+//! fn main() -> Result<(), Box<dyn std::error::Error>> {
+//!    let pidfile = PidFile::new("/tmp/myapp.pid")?;
+//!   // Do stuff
+//!
+//!   Ok(())
+//! }
+//! ```
 
 use std::io;
 use std::path::{Path, PathBuf};
@@ -104,6 +126,9 @@ impl PidFile {
     }
 
     /// Check if a PID file is in use at this path.
+    ///
+    /// If this function returns an error, it indicates that either the PID file
+    /// could not be accessed, or when accessed, it contained data which did not look like a PID.
     pub fn is_locked(path: &Path) -> Result<bool, io::Error> {
         match pid_file_in_use(path) {
             Ok(true) => Ok(true),
