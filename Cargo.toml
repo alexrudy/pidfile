@@ -1,5 +1,5 @@
 [package]
-name = "pidfile"
+name = "pidfile2"
 version = "0.1.0"
 edition = "2021"
 description = "PID Files as process locks in Rust"
@@ -12,6 +12,8 @@ authors = ["Alex Rudy <opensource@alexrudy.net>"]
 categories = []
 keywords = []
 
+[lib]
+name = "pidfile"
 
 [dependencies]
 libc = "0.2"
