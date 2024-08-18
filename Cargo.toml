@@ -1,0 +1,21 @@
+[package]
+name = "pidfile"
+version = "0.1.0"
+edition = "2021"
+description = "PID Files as process locks in Rust"
+license = "MIT"
+repository = "https://github.com/alexrudy/pidfile"
+documentation = "https://docs.rs/pidfile2"
+rust-version = "1.74"
+readme = "README.md"
+authors = ["Alex Rudy <opensource@alexrudy.net>"]
+categories = []
+keywords = []
+
+
+[dependencies]
+libc = "0.2"
+tracing = "0.1"
+
+[dev-dependencies]
+tempfile = "3.12.0"
