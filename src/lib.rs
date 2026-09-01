@@ -116,7 +116,7 @@ impl PidFile {
 
         if pid <= 0 {
             tracing::error!("libc::getpid() returned a negative PID: {pid}");
-            return Err(io::Error::new(io::ErrorKind::Other, "negative PID"));
+            return Err(io::Error::other("negative PID"));
         }
 
         std::fs::write(&path, format!("{}", pid))?;
